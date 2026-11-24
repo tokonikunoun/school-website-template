@@ -3,7 +3,7 @@
 //
 //   pnpm user:create --email you@school.ng --password 'S3cure!pass' --role super_admin --name "Dr. A. Bello"
 //   Optional: --staff STF/004      link to a staff record (teachers, bursar)
-//             --guardian-of BFC/2026/0001   link a parent to a student's primary guardian
+//             --guardian-of SCH/2026/0001   link a parent to a student's primary guardian
 //             --force-change      require a password change on first login
 //
 // Requires NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY. Never expose the service key to the browser.

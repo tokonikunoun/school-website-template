@@ -39,7 +39,7 @@ const brandVars = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-NG" className={`${inter.variable} ${sourceSerif.variable} bg-background`} style={brandVars}>
+    <html lang={schoolConfig.locale} className={`${inter.variable} ${sourceSerif.variable} bg-background`} style={brandVars}>
       <body className="antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

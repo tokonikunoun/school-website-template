@@ -98,26 +98,20 @@ export function ProgrammesSection() {
   const junior = schoolConfig.academics.levels.filter((l) => l.group === 'junior').map((l) => l.name)
   const senior = schoolConfig.academics.levels.filter((l) => l.group === 'senior').map((l) => l.name)
   return (
-    <Section eyebrow="Academics" title="Junior and senior secondary" description={`Following the ${schoolConfig.academics.curricula.join(', ')} curricula with strong exam preparation.`}>
+    <Section eyebrow="Academics" title={site.programmes.title} description={`Following the ${schoolConfig.academics.curricula.join(', ')} curricula.`}>
       <div className="grid gap-6 md:grid-cols-2">
         {junior.length > 0 && (
           <div className="flex flex-col gap-3 rounded-lg border p-6">
             <p className="text-sm font-medium text-muted-foreground">{junior.join(' · ')}</p>
-            <h3 className="font-heading text-2xl font-semibold">Junior Secondary</h3>
-            <p className="leading-relaxed text-muted-foreground">
-              A broad foundation across English, Mathematics, Basic Science and Technology, Social Studies, Business Studies,
-              Cultural and Creative Arts, French and a Nigerian language, ending with the BECE.
-            </p>
+            <h3 className="font-heading text-2xl font-semibold">{site.programmes.junior.title}</h3>
+            <p className="leading-relaxed text-muted-foreground">{site.programmes.junior.body}</p>
           </div>
         )}
         {senior.length > 0 && (
           <div className="flex flex-col gap-3 rounded-lg border p-6">
             <p className="text-sm font-medium text-muted-foreground">{senior.join(' · ')}</p>
-            <h3 className="font-heading text-2xl font-semibold">Senior Secondary</h3>
-            <p className="leading-relaxed text-muted-foreground">
-              Students specialise in {schoolConfig.academics.departments.map((d) => d.name).join(', ')} and sit WASSCE,
-              NECO and JAMB with dedicated CBT practice.
-            </p>
+            <h3 className="font-heading text-2xl font-semibold">{site.programmes.senior.title}</h3>
+            <p className="leading-relaxed text-muted-foreground">{site.programmes.senior.body}</p>
           </div>
         )}
       </div>
@@ -176,7 +170,7 @@ export function EventRow({ e }: { e: EventItem }) {
   return (
     <li className="flex gap-5 border-b py-5 last:border-0">
       <div className="flex w-16 shrink-0 flex-col items-center rounded-md bg-primary py-2 text-primary-foreground">
-        <span className="text-xs uppercase">{d.toLocaleDateString('en-NG', { month: 'short' })}</span>
+        <span className="text-xs uppercase">{d.toLocaleDateString(schoolConfig.locale, { month: 'short' })}</span>
         <span className="font-heading text-2xl font-semibold">{d.getDate()}</span>
       </div>
       <div className="flex flex-col gap-1">
@@ -185,7 +179,7 @@ export function EventRow({ e }: { e: EventItem }) {
         <p className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
           <span className="flex items-center gap-1">
             <CalendarDays className="size-3.5" aria-hidden />
-            {d.toLocaleString('en-NG', { weekday: 'short', hour: 'numeric', minute: '2-digit' })}
+            {d.toLocaleString(schoolConfig.locale, { weekday: 'short', hour: 'numeric', minute: '2-digit' })}
           </span>
           {e.location && (
             <span className="flex items-center gap-1">

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
+import { schoolConfig } from '@/config/school.config'
 import { createClient } from '@/lib/supabase/server'
 import { requirePermission } from '@/lib/auth'
 import { getClassArms, getCurrentTerm, getSubjects, photoSrc, signedPhotoUrls, studentName } from '@/lib/academics'
@@ -219,7 +220,7 @@ export default async function StudentProfilePage({ params, searchParams }: {
                     </span>
                     {h.note && <span className="text-muted-foreground">{h.note}</span>}
                     <time dateTime={h.created_at} className="text-xs text-muted-foreground">
-                      {new Date(h.created_at).toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' })}
+                      {new Date(h.created_at).toLocaleDateString(schoolConfig.locale, { day: 'numeric', month: 'short', year: 'numeric' })}
                     </time>
                   </li>
                 ))}
