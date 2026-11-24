@@ -109,4 +109,4 @@ The prompt pack can be included in this repository under `prompts/` so readers c
 
 ## Licence
 
-[Add your chosen licence and its terms here.]
+No licence for reuse has been selected yet. Please contact the author for permission to use or adapt this project.
