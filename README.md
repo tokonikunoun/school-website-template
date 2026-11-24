@@ -4,6 +4,7 @@ A reusable website and school management system for Nigerian secondary schools, 
 
 **Status:** Phase 1  
 **Live demo:** (https://sch-website-template.vercel.app/) 
+
 **Author and prompt engineer:** Tokoni Kunoun  
 **AI-assisted development:** Vercel v0
 
