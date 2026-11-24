@@ -52,4 +52,19 @@ union all
 select 'teacher', unnest(array['results.enter','attendance.mark'])
 on conflict do nothing;
 
+-- Optional permission sets that can be granted on top of a primary role (e.g. to a teacher).
+insert into public.roles (key, name, description, is_system) values
+  ('exam_officer', 'Exam Officer', 'Review, override and publish results for all classes.', false),
+  ('admissions_officer', 'Admissions Officer', 'Process applications and view student records.', false),
+  ('records_officer', 'Records Officer', 'View and manage student records, including bulk import.', false)
+on conflict (key) do nothing;
+
+insert into public.role_permissions (role_key, permission_key)
+select 'exam_officer', unnest(array['results.review','results.publish'])
+union all
+select 'admissions_officer', unnest(array['admissions.manage','students.view'])
+union all
+select 'records_officer', unnest(array['students.view','students.manage'])
+on conflict do nothing;
+
 commit;
