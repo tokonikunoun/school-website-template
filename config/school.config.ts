@@ -1,9 +1,24 @@
 /**
- * school.config.ts — the ONLY file a new school needs to edit.
- * Everything school-specific (identity, branding, academics, grading, fees, features,
- * website content and navigation) lives here. Secrets live in environment variables.
+ * ============================================================================
+ *  school.config.ts — THE ONE FILE TO EDIT FOR A NEW SCHOOL
+ * ============================================================================
  *
- * Keep this file free of imports from the app (it is also read by scripts/db-setup.mjs).
+ *  Every school-specific value used by the website, admin dashboard, portals,
+ *  report cards and database setup comes from this file.
+ *
+ *  How to customise:
+ *    1. Search this file for "REPLACE" and change each value marked with it.
+ *    2. Put your own images in /public/images/ (see "Branding" and "principal").
+ *    3. Run `pnpm db:setup` so the database picks up the name, prefixes and grading.
+ *
+ *  Rules:
+ *    - Keep the shape (keys) the same; only change the values.
+ *    - Money is written in kobo / the smallest currency unit (₦1 = 100 kobo).
+ *    - Keep this file free of imports from the app (scripts/db-setup.mjs reads it too).
+ *    - Secrets (API keys, database URLs) go in environment variables, never here.
+ *
+ *  Full guide: README.md
+ * ============================================================================
  */
 
 export type LevelGroup = 'nursery' | 'primary' | 'junior' | 'senior'
@@ -22,61 +37,80 @@ export type HomeSection =
 
 export const schoolConfig = {
   // ---------------------------------------------------------------------------
-  // Identity
+  // 1. Identity  — REPLACE all values in this section
   // ---------------------------------------------------------------------------
-  name: 'Brightfield College',
-  shortName: 'Brightfield',
-  initials: 'BFC',
-  motto: 'Knowledge, Character, Service',
-  foundedYear: 2004,
+  name: 'Your School Name', // REPLACE: full name, shown in titles, footer, report cards
+  shortName: 'Your School', // REPLACE: short name used in headings ("What makes ___ different")
+  initials: 'YS', // REPLACE: 2–4 letters, used as a fallback logo mark
+  motto: 'Your school motto', // REPLACE
+  foundedYear: 2000, // REPLACE: drives the "Years since …" stat
   description:
-    'Brightfield College is a co-educational day and boarding secondary school in Lekki, Lagos, offering the Nigerian curriculum from JSS 1 to SS 3 with strong results in WAEC, NECO and JAMB.',
+    'REPLACE: one or two sentences describing your school. This is used for search engines and link previews.',
+  /** Language/region tag used for dates and the <html lang> attribute, e.g. 'en-NG', 'en-GB', 'en-GH'. */
+  locale: 'en-NG',
+  /** Shown exactly as written. Leave a field as '' to skip it. */
   address: {
-    street: '12 Admiralty Way, Lekki Phase 1',
-    city: 'Lekki',
-    lga: 'Eti-Osa',
-    state: 'Lagos',
-    country: 'Nigeria',
+    street: '123 School Road', // REPLACE
+    city: 'Your City', // REPLACE
+    lga: 'Your LGA', // REPLACE: local government area / district, e.g. 'Ikeja LGA'
+    state: 'Your State', // REPLACE: e.g. 'Lagos State'
+    country: 'Nigeria', // REPLACE
   },
-  phones: ['+234 803 123 4500', '+234 809 876 5400'],
-  whatsapp: '2348031234500', // international format, digits only
+  phones: ['+234 800 000 0000', '+234 800 000 0001'], // REPLACE: first number is the main line
+  whatsapp: '2348000000000', // REPLACE: international format, digits only (no + or spaces)
   emails: {
-    general: 'info@brightfield.edu.ng',
-    admissions: 'admissions@brightfield.edu.ng',
-    accounts: 'accounts@brightfield.edu.ng',
+    general: 'info@yourschool.example', // REPLACE
+    admissions: 'admissions@yourschool.example', // REPLACE
+    accounts: 'accounts@yourschool.example', // REPLACE
   },
+  /** REPLACE with your pages. Set a link to '' to hide that icon. */
   social: {
     facebook: 'https://facebook.com/',
     instagram: 'https://instagram.com/',
     x: 'https://x.com/',
     youtube: 'https://youtube.com/',
   },
-  mapEmbedUrl:
-    'https://www.google.com/maps?q=Admiralty+Way+Lekki+Phase+1+Lagos&output=embed',
-  officeHours: 'Monday – Friday, 7:30am – 4:00pm',
+  /**
+   * REPLACE: Google Maps → Share → Embed a map → copy the src="…" URL.
+   * A quick alternative: https://www.google.com/maps?q=<your+address>&output=embed
+   */
+  mapEmbedUrl: 'https://www.google.com/maps?q=Lagos+Nigeria&output=embed',
+  officeHours: 'Monday – Friday, 8:00am – 4:00pm', // REPLACE
 
   // ---------------------------------------------------------------------------
-  // Branding
+  // 2. Branding  — REPLACE the images and colours
   // ---------------------------------------------------------------------------
   branding: {
+    /** REPLACE: square PNG or SVG, at least 256×256, transparent background works best. */
     logo: '/images/logo.png',
+    /** REPLACE: usually the same file as the logo. */
     favicon: '/images/logo.png',
+    /** REPLACE: wide landscape photo of your campus, at least 1920×1080. */
     heroImage: '/images/hero.png',
+    /** REPLACE: image shown when the site is shared on social media (1200×630 is ideal). */
     ogImage: '/images/hero.png',
+    /**
+     * REPLACE with your school colours (hex).
+     *   primary   – buttons, links, headings accents
+     *   secondary – dark "ink" colour for the header, footer and admin sidebar
+     *   accent    – highlights such as the hero badge and call-to-action buttons
+     * Keep good contrast: primary should be dark enough for white text on top.
+     */
     colors: {
-      primary: '#0f4c3a', // deep school green
-      secondary: '#12261f', // ink
-      accent: '#e0a526', // crest gold
+      primary: '#1d4e89',
+      secondary: '#14213d',
+      accent: '#f2b134',
     },
     /** 'classic' = serif headings + sans body, 'modern' = sans throughout */
     fontPreset: 'classic' as 'classic' | 'modern',
   },
 
-  schoolType: 'both' as 'day' | 'boarding' | 'both',
-  genderType: 'mixed' as 'boys' | 'girls' | 'mixed',
+  schoolType: 'both' as 'day' | 'boarding' | 'both', // REPLACE
+  genderType: 'mixed' as 'boys' | 'girls' | 'mixed', // REPLACE
 
   // ---------------------------------------------------------------------------
-  // Academic structure
+  // 3. Academic structure
+  //    Classes and terms are synced into the database by `pnpm db:setup`.
   // ---------------------------------------------------------------------------
   academics: {
     levels: [
@@ -94,14 +128,14 @@ export const schoolConfig = {
     curricula: ['NERDC', 'WAEC', 'NECO', 'JAMB'],
     offersCambridge: false,
     departments: [
-      { name: 'Science', description: 'Physics, Chemistry, Biology, Further Mathematics and Agricultural Science for future engineers, doctors and scientists.' },
-      { name: 'Arts', description: 'Literature, Government, History and CRS/IRS for future lawyers, writers and public servants.' },
-      { name: 'Commercial', description: 'Economics, Commerce, Accounting and Marketing for future entrepreneurs and finance professionals.' },
+      { name: 'Science', description: 'Physics, Chemistry, Biology, Further Mathematics and Agricultural Science.' },
+      { name: 'Arts', description: 'Literature, Government, History and Religious Studies.' },
+      { name: 'Commercial', description: 'Economics, Commerce, Accounting and Marketing.' },
     ],
   },
 
   // ---------------------------------------------------------------------------
-  // Assessment and grading (default WAEC-style)
+  // 4. Assessment and grading (default: WAEC-style). Components must total 100.
   // ---------------------------------------------------------------------------
   assessment: {
     components: [
@@ -130,26 +164,28 @@ export const schoolConfig = {
   ],
 
   // ---------------------------------------------------------------------------
-  // Money and numbering
+  // 5. Money and numbering
   // ---------------------------------------------------------------------------
   currency: { code: 'NGN', symbol: '₦', locale: 'en-NG' },
+  /** REPLACE the prefixes with your initials. Changing them later only affects new records. */
   numbering: {
-    admissionPrefix: 'BFC', // → BFC/2026/0001
-    receiptPrefix: 'BFC-RCP', // → BFC-RCP/2026/000001
-    invoicePrefix: 'BFC-INV',
-    applicationPrefix: 'BFC-APP',
+    admissionPrefix: 'SCH', // → SCH/2026/0001
+    receiptPrefix: 'SCH-RCP', // → SCH-RCP/2026/000001
+    invoicePrefix: 'SCH-INV',
+    applicationPrefix: 'SCH-APP', // → SCH-APP-2026-00001
   },
   payments: {
     gateway: 'paystack' as 'paystack' | 'flutterwave',
     bankTransfer: {
       enabled: true,
-      accounts: [{ bank: 'Access Bank', accountName: 'Brightfield College', accountNumber: '0123456789' }],
+      // REPLACE with your real account(s). Shown to parents on invoices.
+      accounts: [{ bank: 'Your Bank', accountName: 'Your School Name', accountNumber: '0000000000' }],
     },
     withholdResultsAboveKobo: 0, // 0 = do not withhold results for debt
   },
 
   // ---------------------------------------------------------------------------
-  // Feature flags
+  // 6. Feature flags — turn whole modules on or off
   // ---------------------------------------------------------------------------
   features: {
     onlinePayments: true,
@@ -170,12 +206,12 @@ export const schoolConfig = {
     showStudentPhoto: true,
     showPosition: true,
     signatures: ['Form Teacher', 'Principal'],
-    principalName: 'Dr. Olufemi Adekunle',
-    principalSignature: '',
+    principalName: 'Principal Name', // REPLACE
+    principalSignature: '', // optional: path to a signature image in /public
   },
 
   // ---------------------------------------------------------------------------
-  // Public website
+  // 7. Public website content — REPLACE the text to tell your school's story
   // ---------------------------------------------------------------------------
   website: {
     navigation: [
@@ -187,6 +223,7 @@ export const schoolConfig = {
       { label: 'Gallery', href: '/gallery' },
       { label: 'Contact', href: '/contact' },
     ],
+    /** Home page sections, top to bottom. Remove or reorder entries to change the home page. */
     homeSections: [
       'hero',
       'stats',
@@ -201,72 +238,83 @@ export const schoolConfig = {
       'map',
     ] as HomeSection[],
     hero: {
-      eyebrow: 'Admissions open for 2027/2028',
-      title: 'A school that shapes scholars and builds character.',
+      eyebrow: 'Admissions now open', // REPLACE
+      title: 'REPLACE: a short, confident headline about your school.',
       subtitle:
-        'JSS 1 to SS 3, day and boarding, in the heart of Lekki. Strong WAEC, NECO and JAMB results, caring teachers and a campus where every child is known by name.',
+        'REPLACE: one or two sentences on who you teach, where you are and what makes you different.',
     },
     stats: {
       yearsOfExcellence: true,
-      passRate: { value: '94%', label: 'WASSCE 5 credits incl. English & Maths' },
+      /** REPLACE with a real, verifiable figure, or set passRate to false to hide it. */
+      passRate: { value: '00%', label: 'REPLACE: e.g. WASSCE 5 credits incl. English & Maths' } as
+        | { value: string; label: string }
+        | false,
     },
     principal: {
-      name: 'Dr. Olufemi Adekunle',
+      name: 'Principal Name', // REPLACE
       title: 'Principal',
-      photo: '/images/principal.png',
+      photo: '/images/principal.png', // REPLACE: portrait photo, 4:5 ratio, at least 800×1000
       message:
-        'Welcome to Brightfield College. For over two decades we have partnered with parents to raise young people who are academically excellent, morally upright and ready to serve. Our teachers know every student by name, and our doors are always open to families. I invite you to visit us and see the difference for yourself.',
+        'REPLACE: a short welcome message from the head of school (60–90 words works best). Introduce the school, what it values and invite families to visit.',
     },
     history:
-      'Brightfield College was founded in 2004 by a group of educators with a simple goal: a school in Lagos that combines rigorous academics with strong values. From 46 students in a rented building, we have grown into a full secondary school with modern laboratories, a library, an ICT centre and boarding houses.',
-    vision: 'To be a leading secondary school in Nigeria, raising leaders of character for Africa and the world.',
-    mission:
-      'To provide a safe, disciplined and inspiring environment where every student achieves academic excellence and grows in character, creativity and service.',
-    coreValues: ['Integrity', 'Excellence', 'Discipline', 'Respect', 'Service'],
+      'REPLACE: a short paragraph about when and why the school was founded and how it has grown.',
+    vision: 'REPLACE: your vision statement.',
+    mission: 'REPLACE: your mission statement.',
+    coreValues: ['Integrity', 'Excellence', 'Discipline', 'Respect', 'Service'], // REPLACE
+    /** REPLACE: six short reasons families choose your school. */
     whyChooseUs: [
-      { title: 'Proven results', body: 'Consistent top results in WASSCE, NECO and JAMB, with dedicated exam preparation from SS 1.' },
-      { title: 'Qualified teachers', body: 'TRCN-registered teachers with small class sizes so no child is left behind.' },
-      { title: 'Safe campus', body: 'Gated campus, CCTV, trained security and a full-time nurse in the sick bay.' },
-      { title: 'Modern facilities', body: 'Science laboratories, ICT centre with CBT practice, library, sports field and steady power.' },
-      { title: 'Character first', body: 'Mentoring, clubs and leadership roles that build integrity, confidence and service.' },
+      { title: 'Strong results', body: 'REPLACE: describe your academic results and exam preparation.' },
+      { title: 'Qualified teachers', body: 'REPLACE: describe your teachers and class sizes.' },
+      { title: 'Safe campus', body: 'REPLACE: describe security, health care and welfare.' },
+      { title: 'Modern facilities', body: 'REPLACE: describe laboratories, library, ICT and sports.' },
+      { title: 'Character first', body: 'REPLACE: describe mentoring, clubs and leadership.' },
       { title: 'Parents in the loop', body: 'Results, fees and attendance on your phone through the parent portal.' },
     ],
+    /** REPLACE: shown on the home page "Academics" section. */
+    programmes: {
+      title: 'Junior and senior secondary',
+      junior: {
+        title: 'Junior Secondary',
+        body: 'REPLACE: describe the junior curriculum, core subjects and the exam it leads to (e.g. BECE).',
+      },
+      senior: {
+        title: 'Senior Secondary',
+        body: 'REPLACE: describe subject specialisation and the exams students sit (e.g. WASSCE, NECO, JAMB).',
+      },
+    },
+    /** REPLACE: banner images for inner pages (wide landscape photos). */
+    pageImages: {
+      studentLife: '/images/news-sports.png',
+    },
     facilities: [
-      'Physics, Chemistry and Biology laboratories',
-      'ICT centre with 40 workstations and CBT practice',
-      'Library with over 6,000 titles',
-      'Standard football field and basketball court',
-      'Separate boys and girls boarding houses',
-      'Sick bay with a full-time registered nurse',
-      'School buses on major Lekki and Ajah routes',
-      '24-hour power supply',
+      'REPLACE: Science laboratories',
+      'REPLACE: ICT centre',
+      'REPLACE: Library',
+      'REPLACE: Sports field',
     ],
     rules: [
-      'Students must be punctual; the gate closes at 7:30am.',
-      'Full school uniform must be worn neatly at all times.',
-      'Mobile phones are not allowed in class.',
-      'Respect for teachers, staff and fellow students is required.',
-      'Bullying of any kind leads to suspension.',
+      'REPLACE: Students must be punctual.',
+      'REPLACE: Full school uniform must be worn neatly at all times.',
+      'REPLACE: Mobile phones are not allowed in class.',
     ],
-    uniform:
-      'Green blazer with school crest, white shirt, green and gold striped tie, green trousers or skirt, black shoes and white socks. Sportswear: house T-shirt and green shorts.',
+    uniform: 'REPLACE: describe the school and sports uniforms.',
+    /** REPLACE with real quotes, used with permission. Remove 'testimonials' from homeSections to hide. */
     testimonials: [
-      { quote: 'My two children have grown so much in confidence. The teachers really care and the parent portal keeps me informed.', name: 'Mrs. Adaeze Okafor', role: 'Parent, JSS 2 and SS 1' },
-      { quote: 'Brightfield prepared me well for WAEC and JAMB. I scored 312 and got admission to study Medicine.', name: 'Tobi Adebayo', role: 'Class of 2025' },
-      { quote: 'The boarding house is safe and well run. My daughter settled in within weeks.', name: 'Alhaji Musa Bello', role: 'Parent, SS 2' },
+      { quote: 'REPLACE: a short quote from a parent.', name: 'Parent Name', role: 'Parent' },
+      { quote: 'REPLACE: a short quote from a former student.', name: 'Alumnus Name', role: 'Class of 2025' },
+      { quote: 'REPLACE: another short quote.', name: 'Parent Name', role: 'Parent' },
     ],
     studentLife: {
-      clubs: ['JETS Club', 'Debate & Literary Society', 'Press Club', 'Red Cross', 'Coding Club', 'Drama Club', 'Music & Choir', 'Junior Achievement'],
-      sports: ['Football', 'Basketball', 'Athletics', 'Table tennis', 'Volleyball', 'Chess'],
-      boarding:
-        'Separate boys and girls hostels with house parents, supervised prep, three balanced meals a day and weekend activities. Exeat is granted on approved weekends.',
-      health:
-        'Our sick bay is run by a registered nurse with a visiting doctor. We keep health records, allergies and immunisation details for every student.',
-      transport: 'School buses cover Lekki, Ajah, Ikoyi, Victoria Island and Sangotedo. Routes and fares are published each term.',
+      clubs: ['Debate Society', 'Press Club', 'Coding Club', 'Drama Club', 'Music & Choir'], // REPLACE
+      sports: ['Football', 'Basketball', 'Athletics', 'Table tennis'], // REPLACE
+      boarding: 'REPLACE: describe boarding houses, supervision, meals and exeat.',
+      health: 'REPLACE: describe the sick bay, nurse and health records.',
+      transport: 'REPLACE: describe bus routes and fares.',
     },
     admissions: {
       requirements: [
-        'Primary school leaving certificate or last two termly reports',
+        'Last two termly reports or a school leaving certificate',
         'Birth certificate or age declaration',
         'Two recent passport photographs',
         'Pass in the entrance examination and interview',
@@ -278,15 +326,17 @@ export const schoolConfig = {
         'Attend an interview with a parent',
         'Receive an admission letter and accept the offer',
       ],
-      applicationFeeKobo: 1000000,
-      entranceExamDates: ['2027-01-16', '2027-03-13'],
-      forms: [{ label: 'Admission form (PDF)', href: '#' }, { label: 'Medical form (PDF)', href: '#' }],
+      applicationFeeKobo: 1000000, // REPLACE: ₦10,000
+      entranceExamDates: ['2027-01-16', '2027-03-13'], // REPLACE: YYYY-MM-DD
+      forms: [{ label: 'Admission form (PDF)', href: '#' }, { label: 'Medical form (PDF)', href: '#' }], // REPLACE href with file paths in /public
     },
+    /** REPLACE: indicative fees per term, in kobo. */
     feesOverview: [
-      { level: 'JSS 1 – JSS 3 (Day)', perTermKobo: 18500000 },
-      { level: 'SS 1 – SS 3 (Day)', perTermKobo: 21000000 },
-      { level: 'Boarding (additional)', perTermKobo: 25000000 },
+      { level: 'Junior Secondary (Day)', perTermKobo: 15000000 },
+      { level: 'Senior Secondary (Day)', perTermKobo: 18000000 },
+      { level: 'Boarding (additional)', perTermKobo: 20000000 },
     ],
+    /** TERM DATES — REPLACE each session. Shown on the home page and the events page. */
     calendar: [
       { term: 'First Term', dates: '14 Sept – 18 Dec 2026' },
       { term: 'Second Term', dates: '11 Jan – 9 Apr 2027' },

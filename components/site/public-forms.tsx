@@ -190,7 +190,7 @@ export function AdmissionForm({ examDates }: { examDates: readonly string[] }) {
               <option value="">No preference</option>
               {examDates.map((d) => (
                 <option key={d} value={d}>
-                  {new Date(d).toLocaleDateString('en-NG', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' })}
+                  {new Date(d).toLocaleDateString(schoolConfig.locale, { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' })}
                 </option>
               ))}
             </select>
@@ -234,7 +234,7 @@ export function ApplicationStatusForm() {
       <form action={action} className="flex flex-col gap-3 sm:flex-row sm:items-end">
         <div className="flex flex-1 flex-col gap-2">
           <Label htmlFor="reference">Application reference</Label>
-          <Input id="reference" name="reference" required placeholder="BFC-APP-2026-00001" className="h-11" />
+          <Input id="reference" name="reference" required placeholder={`${schoolConfig.numbering.applicationPrefix}-2026-00001`} className="h-11" />
         </div>
         <Button type="submit" disabled={pending} className="h-11 px-6">
           {pending ? 'Checking…' : 'Check status'}
@@ -270,7 +270,7 @@ export function ResultCheckerForm() {
   return (
     <div className="flex flex-col gap-8">
       <form action={action} className="grid gap-5 sm:grid-cols-3">
-        <Field name="admission_no" label="Admission number" required hint="e.g. BFC/2024/0001" />
+        <Field name="admission_no" label="Admission number" required hint={`e.g. ${schoolConfig.numbering.admissionPrefix}/2024/0001`} />
         <Field name="serial" label="Card serial" required />
         <Field name="pin" label="PIN" type="password" required />
         <div className="sm:col-span-3">

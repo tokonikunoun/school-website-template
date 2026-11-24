@@ -84,17 +84,17 @@ begin
   -- Staff ---------------------------------------------------------------------
   insert into public.staff (staff_no, title, first_name, last_name, email, phone, gender, qualification, trcn_number,
                             department, position, staff_type, date_employed, bank_name, account_number, account_name) values
-    ('STF/001','Dr.','Olufemi','Adekunle','principal@brightfield.edu.ng','08031234501','male','Ph.D Educational Administration','TRCN/0012345','Administration','Principal','teaching','2012-09-01','Access Bank','0123456781','Olufemi Adekunle'),
-    ('STF/002','Mrs.','Bolanle','Okoro','vp@brightfield.edu.ng','08031234502','female','M.Ed Curriculum Studies','TRCN/0023456','Administration','Vice Principal (Academics)','teaching','2014-01-10','GTBank','0123456782','Bolanle Okoro'),
-    ('STF/003','Mr.','Samuel','Etim','bursar@brightfield.edu.ng','08031234503','male','B.Sc Accounting, ICAN','','Accounts','Bursar','non_teaching','2016-05-02','Zenith Bank','0123456783','Samuel Etim'),
-    ('STF/004','Mrs.','Folake','Adeyemi','f.adeyemi@brightfield.edu.ng','08031234504','female','B.A (Ed) English','TRCN/0034567','Languages','Head, Languages','teaching','2015-09-07','First Bank','0123456784','Folake Adeyemi'),
-    ('STF/005','Mr.','Chinedu','Okafor','c.okafor@brightfield.edu.ng','08031234505','male','B.Sc (Ed) Mathematics','TRCN/0045678','Sciences','Mathematics Teacher','teaching','2017-09-11','UBA','0123456785','Chinedu Okafor'),
-    ('STF/006','Mr.','Ibrahim','Musa','i.musa@brightfield.edu.ng','08031234506','male','B.Sc Physics, PGDE','TRCN/0056789','Sciences','Physics Teacher','teaching','2018-01-08','Access Bank','0123456786','Ibrahim Musa'),
-    ('STF/007','Mrs.','Ngozi','Eze','n.eze@brightfield.edu.ng','08031234507','female','B.Sc (Ed) Chemistry','TRCN/0067890','Sciences','Head, Sciences','teaching','2016-09-05','GTBank','0123456787','Ngozi Eze'),
-    ('STF/008','Miss','Aisha','Bello','a.bello@brightfield.edu.ng','08031234508','female','B.Sc Biology, PGDE','TRCN/0078901','Sciences','Biology Teacher','teaching','2020-09-14','Zenith Bank','0123456788','Aisha Bello'),
-    ('STF/009','Mr.','Tunde','Bakare','t.bakare@brightfield.edu.ng','08031234509','male','B.Sc Economics, PGDE','TRCN/0089012','Commercial','Economics Teacher','teaching','2019-01-07','First Bank','0123456789','Tunde Bakare'),
-    ('STF/010','Mrs.','Grace','Nwosu','g.nwosu@brightfield.edu.ng','08031234510','female','B.A (Ed) Religious Studies','TRCN/0090123','Arts','Head, Arts','teaching','2015-01-12','UBA','0123456790','Grace Nwosu'),
-    ('STF/011','Mr.','Emeka','Obi','e.obi@brightfield.edu.ng','08031234511','male','B.Sc Computer Science','TRCN/0101234','Sciences','Computer Studies Teacher','teaching','2021-09-13','Access Bank','0123456791','Emeka Obi');
+    ('STF/001','Dr.','Olufemi','Adekunle','principal@yourschool.example','08031234501','male','Ph.D Educational Administration','TRCN/0012345','Administration','Principal','teaching','2012-09-01','Access Bank','0123456781','Olufemi Adekunle'),
+    ('STF/002','Mrs.','Bolanle','Okoro','vp@yourschool.example','08031234502','female','M.Ed Curriculum Studies','TRCN/0023456','Administration','Vice Principal (Academics)','teaching','2014-01-10','GTBank','0123456782','Bolanle Okoro'),
+    ('STF/003','Mr.','Samuel','Etim','bursar@yourschool.example','08031234503','male','B.Sc Accounting, ICAN','','Accounts','Bursar','non_teaching','2016-05-02','Zenith Bank','0123456783','Samuel Etim'),
+    ('STF/004','Mrs.','Folake','Adeyemi','f.adeyemi@yourschool.example','08031234504','female','B.A (Ed) English','TRCN/0034567','Languages','Head, Languages','teaching','2015-09-07','First Bank','0123456784','Folake Adeyemi'),
+    ('STF/005','Mr.','Chinedu','Okafor','c.okafor@yourschool.example','08031234505','male','B.Sc (Ed) Mathematics','TRCN/0045678','Sciences','Mathematics Teacher','teaching','2017-09-11','UBA','0123456785','Chinedu Okafor'),
+    ('STF/006','Mr.','Ibrahim','Musa','i.musa@yourschool.example','08031234506','male','B.Sc Physics, PGDE','TRCN/0056789','Sciences','Physics Teacher','teaching','2018-01-08','Access Bank','0123456786','Ibrahim Musa'),
+    ('STF/007','Mrs.','Ngozi','Eze','n.eze@yourschool.example','08031234507','female','B.Sc (Ed) Chemistry','TRCN/0067890','Sciences','Head, Sciences','teaching','2016-09-05','GTBank','0123456787','Ngozi Eze'),
+    ('STF/008','Miss','Aisha','Bello','a.bello@yourschool.example','08031234508','female','B.Sc Biology, PGDE','TRCN/0078901','Sciences','Biology Teacher','teaching','2020-09-14','Zenith Bank','0123456788','Aisha Bello'),
+    ('STF/009','Mr.','Tunde','Bakare','t.bakare@yourschool.example','08031234509','male','B.Sc Economics, PGDE','TRCN/0089012','Commercial','Economics Teacher','teaching','2019-01-07','First Bank','0123456789','Tunde Bakare'),
+    ('STF/010','Mrs.','Grace','Nwosu','g.nwosu@yourschool.example','08031234510','female','B.A (Ed) Religious Studies','TRCN/0090123','Arts','Head, Arts','teaching','2015-01-12','UBA','0123456790','Grace Nwosu'),
+    ('STF/011','Mr.','Emeka','Obi','e.obi@yourschool.example','08031234511','male','B.Sc Computer Science','TRCN/0101234','Sciences','Computer Studies Teacher','teaching','2021-09-13','Access Bank','0123456791','Emeka Obi');
 
   -- Teacher assignments by subject code
   insert into public.teacher_assignments (staff_id, class_arm_id, subject_id, session_id)
@@ -154,7 +154,7 @@ begin
       values (
         (case when i % 3 = 0 then 'Mrs. ' else 'Mr. ' end) || (case when i % 2 = 0 then male_names[(i % 30) + 1] else female_names[(i % 30) + 1] end) || ' ' || last_names[((i * 7) % 30) + 1],
         '080' || lpad((40000000 + i * 1371)::text, 8, '0'),
-        'guardian' || i || '@mail.brightfield.edu.ng',
+        'guardian' || i || '@mail.yourschool.example',
         (i * 3) || ' Adeola Odeku Street, Victoria Island, Lagos',
         (array['Civil Servant','Trader','Engineer','Doctor','Lawyer','Banker','Entrepreneur'])[(i % 7) + 1]
       ) returning id into v_guardian;
@@ -396,7 +396,7 @@ begin
 
   insert into public.applications (reference, first_name, last_name, gender, date_of_birth, class_applied, previous_school,
                                    guardian_name, guardian_phone, guardian_email, status, exam_date) values
-    ('APP-2026-00001','Daniel','Ogunbiyi','male','2015-03-12','JSS 1','Bright Stars Primary School','Mr. Kunle Ogunbiyi','08051112233','kunle.o@mail.brightfield.edu.ng','entrance_exam','2027-01-16'),
+    ('APP-2026-00001','Daniel','Ogunbiyi','male','2015-03-12','JSS 1','Bright Stars Primary School','Mr. Kunle Ogunbiyi','08051112233','kunle.o@mail.yourschool.example','entrance_exam','2027-01-16'),
     ('APP-2026-00002','Precious','Ekanem','female','2015-07-02','JSS 1','Holy Child Nursery & Primary','Mrs. Ima Ekanem','08051112234',null,'applied',null),
     ('APP-2026-00003','Abdul','Salami','male','2011-11-20','SS 1','Unity Model College','Alhaji Musa Salami','08051112235',null,'screened',null),
     ('APP-2026-00004','Chisom','Agu','female','2015-01-15','JSS 1','Greenfield Primary School','Dr. Nkem Agu','08051112236',null,'offered','2026-11-14'),

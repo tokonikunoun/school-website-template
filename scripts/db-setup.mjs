@@ -102,6 +102,7 @@ try {
   if (process.argv.includes('--demo')) {
     console.log('→ demo school data')
     await runFile(join(root, 'db', 'seed', 'demo.sql'))
+    await runFile(join(root, 'db', 'seed', 'demo_academics.sql'))
   }
 
   console.log('✓ Database ready')

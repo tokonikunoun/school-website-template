@@ -45,9 +45,9 @@ export function SiteFooter() {
           <address className="not-italic leading-relaxed opacity-80">
             {address.street}
             <br />
-            {address.city}, {address.lga} LGA
+            {[address.city, address.lga].filter(Boolean).join(', ')}
             <br />
-            {address.state} State, {address.country}
+            {[address.state, address.country].filter(Boolean).join(', ')}
           </address>
           {schoolConfig.phones.map((p) => (
             <a key={p} href={`tel:${p.replace(/\s/g, '')}`} className="opacity-80 hover:opacity-100">

@@ -20,7 +20,7 @@ export default function StudentLifePage() {
   const s = schoolConfig.website.studentLife
   return (
     <>
-      <PageHeader eyebrow="Beyond the classroom" title="Student life" description="Clubs, sports, leadership and a caring community." image="/images/news-sports.png" />
+      <PageHeader eyebrow="Beyond the classroom" title="Student life" description="Clubs, sports, leadership and a caring community." image={schoolConfig.website.pageImages.studentLife} />
       <Section>
         <div className="grid gap-12 md:grid-cols-2">
           <div className="flex flex-col gap-4">

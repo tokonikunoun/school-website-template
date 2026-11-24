@@ -57,9 +57,9 @@
  */
 :root {
   color-scheme: light;
-  --primary: #0f4c3a;
-  --ink: #12261f;
-  --accent: #e0a526;
+  --primary: #1d4e89;
+  --ink: #14213d;
+  --accent: #f2b134;
 
   --background: #ffffff;
   --foreground: var(--ink);
